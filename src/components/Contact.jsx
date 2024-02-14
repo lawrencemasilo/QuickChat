@@ -1,91 +1,88 @@
 import test from '../images/user.svg'
-import { useContext, useEffect, useState } from 'react'
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { useContext, useEffect, useRef, useState } from 'react'
+import { collection, doc, getDoc, onSnapshot, orderBy, query } from "firebase/firestore";
 import { AuthContext } from '../context/AuthContext';
 import { db } from '../firebase';
 import { ChatContext } from '../context/ChatContext';
 
-
 function Contact() {
-  const [chats, setChats] = useState([])
-  const {currentUser} = useContext(AuthContext);
+  const [chats, setChats] = useState([]);
+  const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
-    const displayChats = () => {
-      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
-          setChats(doc.data());
-      });
-      return () => {
-        unsub();
-      };
-    };
-    if (currentUser.uid) {
-      displayChats();
-    }
-  }, [currentUser.uid])
-
-  
-  /*useEffect(() => {
-    const displayChats = async () => {
+    const fetchChats = async () => {
       try {
-        if (currentUser && currentUser.uid) {
-          const docRef = doc(db, "userChats", currentUser.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setChats(docSnap.data());
-          } else {
-            console.log("User chats document does not exist");
-          }
+        const userChatRef = doc(db, "userChats", currentUser.uid);
+        const userChatSnap = await getDoc(userChatRef);
+
+        if (userChatSnap.exists()) {
+          const chatData = userChatSnap.data();
+          const filteredChats = Object.entries(chatData)
+            .filter(([key, value]) => key !== "messages")
+            .map(([key, value]) => ({ id: key, ...value }));
+
+          setChats(filteredChats);
         } else {
-          console.log("Current user or user ID is undefined");
+          console.log("User's chat document does not exist");
         }
       } catch (error) {
-        console.error("Error fetching user chats:", error);
+        console.error("Error fetching chats:", error);
       }
     };
 
-    displayChats();
-  }, [currentUser]);
-  
-  {chats[1].userInfo.displayName}
-  {chats[1].date.seconds}*/
-  const handleSelect = (u) => {
-    dispatch({type:"CHANGE_USER", payload: u})
-  }
-  /*
-  {Object.entries(chats)?.map((chats) => (
-        <div className="contact-container" key={chats} onClick={handleSelect}>     
+    if (currentUser.uid) {
+      fetchChats();
+    }
+  }, [currentUser.uid]);
+
+  const handleSelect = (chat) => {
+    dispatch({ type: "CHANGE_USER", payload: chat.userInfo });
+  };
+
+  const [messages, setMessages] = useState([]);
+  const { data } = useContext(ChatContext);
+
+  useEffect(() => {
+    if (data && data.chatId) {
+      const messagesRef = collection(db, 'userMessages', data.chatId, 'messages');
+      const q = query(messagesRef, orderBy('timestamp', 'desc'));
+
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const newMessages = [];
+        snapshot.forEach((doc) => {
+          newMessages.push({ id: doc.id, ...doc.data() });
+        });
+        setMessages(newMessages);
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [data]);
+  return (
+    <>
+      {chats.map((chat) => (
+        <div className="contact-container" key={chat.id} onClick={() => handleSelect(chat)}>
           <img src={test} alt="user profile picture" />
           <div className="user-name-text">
-            <h1 className="user-name"></h1>
-            <p className="latest-text"></p>
+            <h1 className="user-name">{chat.userInfo.displayName}</h1>
+            <p className='latest-text'>
+              {/*
+                messages && messages.map((message) => (
+                  message[0].content
+              ))*/
+              }
+            </p>
           </div>
           <div className="text-time">
-            <p></p>
+            <p>{chat.date?.toDate().toLocaleTimeString()}</p>
           </div>
         </div>
       ))}
-   
-  console.log(chats)*/
-  return (
-    <>
-      {Object.entries(chats).map(([chatId, chat]) => (
-        chatId !== "messages" && (
-          <div className="contact-container" key={chatId} onClick={() => handleSelect(chat)}>     
-            <img src={test} alt="user profile picture" />
-            <div className="user-name-text">
-              <h1 className="user-name">{chat.userInfo.displayName}</h1>
-              <p className="latest-text"></p>
-            </div>
-            <div className="text-time">
-              <p>{chat.date.seconds}</p>
-            </div>
-          </div>
-        )
-      ))}
     </>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

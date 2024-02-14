@@ -2,7 +2,9 @@ import ChatHeader from "./ChatHeader"
 import Input from "./Input"
 import Messages from "./Messages"
 
+
 function Chat() {
+  
   return (
     <div className="chat">
       <ChatHeader />

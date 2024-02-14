@@ -5,7 +5,6 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
-//import { AuthContext } from './context/AuthContext';
 
 function App() {
 

@@ -19,11 +19,11 @@ function Search() {
           setUser(doc.data());
         });
       } else {
-        setUser(null); // Reset user state if no user found
+        setUser(null);
       }
     } catch (error) {
       console.error("Error searching user:", error);
-      setUser(null); // Reset user state on error
+      setUser(null);
     }
   };
 
@@ -33,67 +33,46 @@ function Search() {
     }
   };
 
-  /*const handleSelect = async () => {
-    if (currentUser && user) {
-      const chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
+  const handleSelect = async (selectedUser) => {
+    if (currentUser && selectedUser) {
+      const chatId = currentUser.uid > selectedUser.uid ? currentUser.uid + selectedUser.uid : selectedUser.uid + currentUser.uid;
       try {
-        const res = await getDoc(doc(db, "chats", chatId));
+        const currentUserChatRef = doc(db, "userChats", currentUser.uid);
+        const currentUserChatSnap = await getDoc(currentUserChatRef);
 
-        if (!res.exists()) {
-          await updateDoc(doc(db, "userChats", currentUser.uid), {
-            [chatId + ".userInfo"]: {
-              uid: user.uid,
-              displayName: user.displayName,
-            },
-            [chatId + ".date"]: serverTimestamp(),
-          });
-
-          await updateDoc(doc(db, "userChats", user.uid), {
-            [chatId + ".userInfo"]: {
-              uid: currentUser.uid,
-              displayName: currentUser.displayName,
-            },
-            [chatId + ".date"]: serverTimestamp(),
-          });
-        }
-      } catch (error) {
-        console.error("Error selecting user:", error);
-      }
-    }
-  };*/
-  const handleSelect = async () => {
-    if (currentUser && user) {
-      const chatId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
-      try {
-        const resCurrentUser = await getDoc(doc(db, "userChats", currentUser.uid));
-        const resUser = await getDoc(doc(db, "userChats", user.uid));
-
-        if (!resCurrentUser.exists()) {
-          await setDoc(doc(db, "userChats", currentUser.uid), { messages: [] });
-        }
-        if (!resUser.exists()) {
-          await setDoc(doc(db, "userChats", user.uid), { messages: [] });
+        if (!currentUserChatSnap.exists()) {
+          await setDoc(currentUserChatRef, { messages: [] });
         }
 
-        const resChat = await getDoc(doc(db, "userChats", currentUser.uid));
-        if (!resChat.data()[chatId]) {
-          await updateDoc(doc(db, "userChats", currentUser.uid), {
-            [chatId + ".userInfo"]: {
-              uid: user.uid,
-              displayName: user.displayName,
+        const selectedUserChatRef = doc(db, "userChats", selectedUser.uid);
+        const selectedUserChatSnap = await getDoc(selectedUserChatRef);
+
+        if (!selectedUserChatSnap.exists()) {
+          await setDoc(selectedUserChatRef, { messages: [] });
+        }
+
+        const currentUserChatData = currentUserChatSnap.data();
+        if (!currentUserChatData[chatId]) {
+          await updateDoc(currentUserChatRef, {
+            [chatId]: {
+              userInfo: {
+                uid: selectedUser.uid,
+                displayName: selectedUser.displayName,
+              },
+              date: serverTimestamp(),
             },
-            [chatId + ".date"]: serverTimestamp(),
           });
         }
-
-        const resChat2 = await getDoc(doc(db, "userChats", user.uid));
-        if (!resChat2.data()[chatId]) {
-          await updateDoc(doc(db, "userChats", user.uid), {
-            [chatId + ".userInfo"]: {
-              uid: currentUser.uid,
-              displayName: currentUser.displayName,
+        const selectedUserChatData = selectedUserChatSnap.data();
+        if (!selectedUserChatData[chatId]) {
+          await updateDoc(selectedUserChatRef, {
+            [chatId]: {
+              userInfo: {
+                uid: currentUser.uid,
+                displayName: currentUser.displayName,
+              },
+              date: serverTimestamp(),
             },
-            [chatId + ".date"]: serverTimestamp(),
           });
         }
       } catch (error) {
@@ -110,7 +89,7 @@ function Search() {
       </div>
 
       {user && (
-        <div className="search-user" onClick={handleSelect}>
+        <div className="search-user" onClick={() => handleSelect(user)}>
           <img src={test} alt="user profile picture" />
           <div className="user-name-text">
             <h1 className="user-name">{user.displayName}</h1>
@@ -122,3 +101,4 @@ function Search() {
 }
 
 export default Search;
+

@@ -1,68 +1,48 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Message from './Message';
-import { ChatContext } from '../context/ChatContext';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { collection, query, onSnapshot, orderBy } from 'firebase/firestore';
 import { db } from '../firebase';
+import { ChatContext } from '../context/ChatContext';
 
 function Messages() {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
+  const messagesContainerRef = useRef(null);
 
-  /*useEffect(() => {
-    if (data && data.ChatId) {
-      const unsub = onSnapshot(doc(db, "chats", data.ChatId), (doc) => {
-        if (doc.exists()) {
-          const messagesData = doc.data()?.messages || [];
-          setMessages(messagesData);
-        } else {
-          console.log("Chat document does not exist");
-        }
+  useEffect(() => {
+    if (data && data.chatId) {
+      const messagesRef = collection(db, 'userMessages', data.chatId, 'messages');
+      const q = query(messagesRef, orderBy('timestamp', 'asc'));
+
+      const unsubscribe = onSnapshot(q, (snapshot) => {
+        const newMessages = [];
+        snapshot.forEach((doc) => {
+          newMessages.push({ id: doc.id, ...doc.data() });
+        });
+        setMessages(newMessages);
+        scrollToBottom();
       });
 
       return () => {
-        unsub();
+        unsubscribe();
       };
-    } else {
-      console.log("ChatId is not available");
-    }
-  }, [data]);*/
-  /*useEffect(() => {
-    if (data && data.ChatId) {
-      const unsub = onSnapshot(doc(db, "chats", data.ChatId), (doc) => {
-        try {
-          if (doc.exists()) {
-            const messagesData = doc.data()?.messages || [];
-            setMessages(messagesData);
-          } else {
-            console.log("Chat document does not exist");
-          }
-        } catch (error) {
-          console.error("Error fetching messages:", error);
-        }
-      });
-
-      return () => {
-        unsub();
-      };
-    } else {
-      console.log("ChatId is not available");
     }
   }, [data]);
-  {messages.map((message, index) => (
-        <Message key={index} message={message} />
-      ))}
-  */
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  };
 
   return (
-    <div className="messages-container">
-      <Message />
-      <Message />
-      <Message />
-      <Message />
-      <Message />
+    <div className="messages-container" ref={messagesContainerRef}>
+      {messages && messages.map((message) => (
+        <Message key={message.id} message={message} />
+      ))
+      }
     </div>
   );
 }
 
 export default Messages;
-

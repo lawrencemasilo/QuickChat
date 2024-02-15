@@ -5,6 +5,7 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import LandingPage from './Pages/LandingPage';
 
 function App() {
 
@@ -22,9 +23,10 @@ function App() {
     <Router>
       <Routes>
         <Route>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
+          <Route path="/home" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
         </Route>
       </Routes>
     </Router>

@@ -21,7 +21,7 @@ function SignUp() {
       });
 
       await setDoc(doc(db, "userMessages", res.user.uid), {});
-      navigate("/");
+      navigate("/home");
 
     }catch(err){
       console.log(err);

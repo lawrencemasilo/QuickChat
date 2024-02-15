@@ -10,7 +10,7 @@ function Login() {
     const password = e.target[1].value;
     try{
       await signInWithEmailAndPassword(auth, email, password)
-      navigate("/")
+      navigate("/home")
     }catch(err){
       console.log(err);
     }

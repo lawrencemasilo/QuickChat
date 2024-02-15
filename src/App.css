@@ -309,9 +309,6 @@ iframe {
   background-color: #e4e4e4;
 }
 
-.contact-container:active {
-  background-color: #006bed;
-}
 
 .contact-container img {
   width: 60px;
@@ -521,8 +518,6 @@ iframe {
   padding-bottom: 54px;
   font-weight: bolder;
 }
-
-
 
 .wrap-input {
   position: relative;

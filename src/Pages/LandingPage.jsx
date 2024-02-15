@@ -4,9 +4,8 @@ import login from '../videos/login.mp4';
 import appdemo2 from '../videos/appdemo2.mp4'
 import '../App.css';
 import '../LandingPage.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Link, Element } from 'react-scroll';
+import github from '../images/github.svg'
 
 
 const videoStyle = {
@@ -50,7 +49,7 @@ function LandingPage() {
             <h4>About</h4>
           </Link>
           <a href="https://github.com/lawrencemasilo/QuickChat" target="_blank" rel="noopener noreferrer" className="github">
-            <FontAwesomeIcon icon={faGithub} />
+            <img src={github} alt="" className="github-img"/>
           </a>
         </div>
         <div className="landing-button-container">

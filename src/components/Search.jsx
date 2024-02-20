@@ -6,8 +6,15 @@ import { AuthContext } from '../context/AuthContext';
 
 function Search() {
   const [username, setUsername] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [user, setUser] = useState(null);
   const { currentUser } = useContext(AuthContext);
+
+
+  const handleChange = (e) => {
+    setUsername(e.target.value);
+    setInputValue(e.target.value);
+  };
 
   const handleSearch = async () => {
     const usersRef = collection(db, "users");
@@ -81,14 +88,19 @@ function Search() {
     }
   };
 
+  const handleClose = () => {
+    setInputValue("");
+  }
+
   return (
     <div className="search-container">
       <div className="search-input-container">
         <span className="material-symbols-outlined">search</span>
-        <input type="text" id="search" placeholder="Search user" onKeyDown={handleKey} onChange={(e) => setUsername(e.target.value)} value={username} />
+        <input type="text" id="search" placeholder="Search user" onKeyDown={handleKey} onChange={handleChange} value={inputValue} />
+        {inputValue && <span className="material-symbols-outlined close" onClick={handleClose}>close</span>}
       </div>
 
-      {user && (
+      {user && inputValue && (
         <div className="search-user" onClick={() => handleSelect(user)}>
           <img src={test} alt="user profile picture" />
           <div className="user-name-text">

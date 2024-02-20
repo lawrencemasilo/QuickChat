@@ -260,6 +260,7 @@ iframe {
 
 
 .search-input-container {
+  display: flex;
   width: 100%;
   height: 50px;
 }
@@ -274,6 +275,7 @@ iframe {
   align-items: center;
   flex-direction: row;
   margin-top: 10px;
+  border-bottom: #c7c7c7 1px solid;
 }
 
 .search-user h1 {
@@ -281,7 +283,18 @@ iframe {
 }
 
 .search-user:hover {
+  cursor: pointer;
   background-color: #e4e4e4;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  padding-right: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
 }
 #search {
   height: 100%;
@@ -306,6 +319,7 @@ iframe {
 }
 
 .contact-container:hover {
+  cursor: pointer;
   background-color: #e4e4e4;
 }
 

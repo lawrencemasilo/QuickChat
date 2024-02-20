@@ -6,6 +6,7 @@ import '../App.css';
 import '../LandingPage.css';
 import { Link, Element } from 'react-scroll';
 import github from '../images/github.svg'
+import {useNavigate } from 'react-router-dom';
 
 
 const videoStyle = {
@@ -23,6 +24,7 @@ const videoStyle2 = {
 
 
 function LandingPage() {
+  const navigate = useNavigate()
   return (
     <div className="landing-container">
       <div className="navBar">
@@ -53,8 +55,8 @@ function LandingPage() {
           </a>
         </div>
         <div className="landing-button-container">
-          <a href="/Login" className="landing-login-button" >Login</a>
-          <a href="/SignUp" className="landing-signup-button">SignUp</a>
+          <button onClick={() => navigate("/login")} className="landing-login-button">LOGIN</button>
+          <button onClick={() => navigate("/signup")} className="landing-signup-button">SIGNUP</button>
         </div>
       </div>
       <div className="hero">
@@ -64,8 +66,8 @@ function LandingPage() {
         <div className="call-to-action-container">
           <h1 className="hero-title">For a simple, <span className="hero-title2">Instant life...</span></h1>
           <div className="hero-button-container">
-            <a href="/Login" className="hero-login-button">LOGIN</a>
-            <a href="/SignUp" className="hero-signup-button">TRY FOR FREE</a>
+            <button onClick={() => navigate("/login")} className="hero-login-button">LOGIN</button>
+            <button onClick={() => navigate("/signup")} className="hero-signup-button">TRY FOR FREE</button>
           </div>
         </div>
       </div>
@@ -76,7 +78,7 @@ function LandingPage() {
               <h1 className="feature-desc-title">Your Security Is Our Priorty</h1>
               <p className="feature-desc">
                 A simple and secure user authentication system,&nbsp;
-                <span className="feature-desc-link">try it out for yourself</span>
+                <span className="feature-desc-link" onClick={() => navigate("/login")}>try it out for yourself</span>
               </p>
             </div>
             <div className="feature-image-container">
@@ -95,7 +97,7 @@ function LandingPage() {
               <h1 className="feature-desc-title">Instant messaging...</h1>
               <p className="feature-desc">
                 Send and receive messages in Real-Time,&nbsp;
-                <span className="feature-desc-link">try it out for yourself</span>
+                <span className="feature-desc-link" onClick={() => navigate("/login")}>try it out for yourself</span>
               </p>
             </div>
           </div>

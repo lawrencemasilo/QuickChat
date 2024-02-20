@@ -30,10 +30,9 @@ function Messages() {
   }, [data]);
 
   const scrollToBottom = () => {
-    if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
-    }
+    messagesContainerRef?.current?.scrollIntoView({ behavior: 'smooth', block: "end"});
   };
+
 
   return (
     <div className="messages-container" ref={messagesContainerRef}>

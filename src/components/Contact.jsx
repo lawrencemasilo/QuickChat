@@ -72,8 +72,7 @@ function Contact() {
               {/*
                 messages && messages.map((message) => (
                   message[0].content
-              ))*/
-              }
+              ))*/}
             </p>
           </div>
           <div className="text-time">

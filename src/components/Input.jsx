@@ -31,9 +31,17 @@ function Input() {
     sendMessage(inputValue);
     setInputValue("");
   };
+
+  const handleKey = (e) => {
+    if (e.key === "Enter") {
+      sendMessage(inputValue);
+      setInputValue("");
+    }
+  };
+
   return (
     <div className="input-container">
-      <input type="text" value={inputValue} onChange={handleChange} placeholder="Message..."/>
+      <input type="text" value={inputValue} onChange={handleChange} onKeyDown={handleKey} placeholder="Message..."/>
       <button className="send-button" onClick={handleClick}>
         <span className="material-symbols-outlined">send</span>
       </button>  

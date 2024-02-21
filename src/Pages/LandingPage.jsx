@@ -8,7 +8,7 @@ import { Link, Element } from 'react-scroll';
 import github from '../images/github.svg'
 import {useNavigate } from 'react-router-dom';
 
-
+/*configures the layout of the videos displayed in the landing page*/
 const videoStyle = {
   width: '100%',
   height: '100%',
@@ -24,6 +24,7 @@ const videoStyle2 = {
 
 
 function LandingPage() {
+  /*Renders the entire landing page. If the landing page has any bug. It's most likely found here*/
   const navigate = useNavigate()
   return (
     <div className="landing-container">
@@ -61,7 +62,7 @@ function LandingPage() {
       </div>
       <div className="hero">
         <div className="hero-image-container">
-          <img src={hero1} alt="" className="hero-image"/>
+          <img src={hero1} alt="Hero image" className="hero-image"/>
         </div>
         <div className="call-to-action-container">
           <h1 className="hero-title">For a simple, <span className="hero-title2">Instant life...</span></h1>

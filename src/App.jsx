@@ -12,6 +12,7 @@ function App() {
   const { currentUser } = useContext(AuthContext)
 
   const ProtectedRoute = ({ children }) => {
+    /* If user is not signed in, redirects to login page */
     if (!currentUser) {
       return <Navigate to="/login/"/>
     }else {
@@ -23,6 +24,7 @@ function App() {
     <Router>
       <Routes>
         <Route>
+          {/*link to each page*/}
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

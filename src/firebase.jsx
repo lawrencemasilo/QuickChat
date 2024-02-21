@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-//import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
+
+/*Setup of Firebase app and Firebase services */
 const firebaseConfig = {
   apiKey: "AIzaSyDfwvLVCB7gUL37yYvb_lF8cSPBw7_YIt8",
   authDomain: "quickchat-706d3.firebaseapp.com",
@@ -17,4 +18,3 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const db = getFirestore()
-//const analytics = getAnalytics(app);

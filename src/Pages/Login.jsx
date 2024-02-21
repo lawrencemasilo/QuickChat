@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
+    /* passes the credentials to the user authentication system in the backend */
     e.preventDefault()
     const email = e.target[0].value;
     const password = e.target[1].value;

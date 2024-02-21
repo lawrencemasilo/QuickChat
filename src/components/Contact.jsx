@@ -11,6 +11,7 @@ function Contact() {
   const { dispatch } = useContext(ChatContext);
 
   useEffect(() => {
+    //fetches all the contacts of the logged in user
     const fetchChats = async () => {
       try {
         const userChatRef = doc(db, "userChats", currentUser.uid);
@@ -62,25 +63,27 @@ function Contact() {
     }
   }, [data]);
   return (
-    <>
+    <div className="contact-limiter-container">
       {chats.map((chat) => (
         <div className="contact-container" key={chat.id} onClick={() => handleSelect(chat)}>
           <img src={test} alt="user profile picture" />
           <div className="user-name-text">
             <h1 className="user-name">{chat.userInfo.displayName}</h1>
             <p className='latest-text'>
-              {/*
+              {//
                 messages && messages.map((message) => (
                   message[0].content
-              ))*/}
+              ))}
             </p>
           </div>
           <div className="text-time">
-            <p>{chat.date?.toDate().toLocaleTimeString()}</p>
+            <p>{
+            chat.date?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }</p>
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

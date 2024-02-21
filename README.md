@@ -1,10 +1,16 @@
 # QuickChat
 
 QuickChat is a simple lightweight chat web application built with ReactJS, and Firebase, allowing users to engage in one-on-one private chats.
-
+## Landing Page
+![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20L1.png)
+![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20L2.png)
+![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20L3.png)
+![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20L4.png)
+## Login and Signup Page
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(74).png)
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(78).png)
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(79).png)
+## Home page
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(75).png)
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(76).png)
 ![](https://github.com/lawrencemasilo/QuickChat/blob/main/src/images/Screenshot%20(77).png)

@@ -70,10 +70,7 @@ function Contact() {
           <div className="user-name-text">
             <h1 className="user-name">{chat.userInfo.displayName}</h1>
             <p className='latest-text'>
-              {//
-                messages && messages.map((message) => (
-                  message[0].content
-              ))}
+              {}
             </p>
           </div>
           <div className="text-time">

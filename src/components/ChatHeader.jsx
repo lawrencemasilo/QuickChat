@@ -13,10 +13,12 @@ function ChatHeader() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const docRef = doc(db, 'users', data.user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setUserInfo(docSnap.data());
+        if (data && data.user && currentUser) {
+          const docRef = doc(db, 'users', data.user.uid);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            setUserInfo(docSnap.data());
+          }
         }
       } catch (error) {
         console.error('Error fetching user data:', error);

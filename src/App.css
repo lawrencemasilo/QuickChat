@@ -108,7 +108,7 @@ iframe {
 
 .txt1 {
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   color: #666666;
   margin-right: 5px;
@@ -116,7 +116,7 @@ iframe {
 
 .txt2 {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
   color: #666666;
 }
@@ -770,4 +770,58 @@ iframe {
 
 .forgot-email {
   color: #0a0a0a;
+}
+
+
+.alt-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.separater1 , .separater2{
+  width: 9rem;
+  height: 0.5px;
+  background-color: #979797;
+}
+
+.or {
+  margin: 0 4px 0 4px
+}
+
+.alt-providers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.google-provider {
+  width: 35px;
+  height: 35px;
+}
+
+.google-provider img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.google-provider img:hover {
+  cursor: pointer;
+}
+
+.p-t-136 {
+  display: flex;
+  align-items: center;
+}
+
+.signIn-link {
+  font-size: 13px;
+  color: #006bed;
+  font-weight: bold;
+}
+
+.signIn-link:hover {
+  color: #00397e;
 }

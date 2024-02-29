@@ -1,21 +1,32 @@
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
-  const navigate = useNavigate()
+  const [inputValue, setInputValue] = useState(null);
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     /* passes the credentials to the user authentication system in the backend */
     e.preventDefault()
     const email = e.target[0].value;
     const password = e.target[1].value;
+    if (email && password) {
+      setInputValue(email);
+    }
     try{
       await signInWithEmailAndPassword(auth, email, password)
       navigate("/home")
     }catch(err){
-      console.log(err);
+      setErr(true);
     }
     
+  }
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
   }
   return (
     <div className="limiter">
@@ -32,16 +43,19 @@ function Login() {
               Login
             </span>
 
-            <div className="wrap-input validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-              <input className="input" type="text" name="email" placeholder="Email" />
+            <div className="wrap-input validate-input" data-validate = "Valid email is required: ex@abc.xyz" >
+              {err &&
+              <input className="input" type="email" name="email" placeholder="Email" onChange={handleChange} required/>}
+              {!err && 
+              <input className="input" type="email" name="email" placeholder="Email" onChange={() => setInputValue(null)} required/>}
               <span className="focus-input"></span>
             </div>
 
             <div className="wrap-input validate-input" data-validate = "Password is required">
-              <input className="input" type="password" name="pass" placeholder="Password" />
+              <input className="input" type="password" name="pass" placeholder="Password" required/>
               <span className="focus-input"></span>
             </div>
-            
+            {err && <p className="err">Incorrect username or password</p>}
             <div className="container-login-form-btn">
               <button className="login-form-btn">
                 Login
@@ -53,7 +67,7 @@ function Login() {
                 Forgot
               </span>
               <a className="txt2" href="#">
-                Username / Password?
+              <Link to="/forgot">Username / Password?</Link>
               </a>
             </div>
 

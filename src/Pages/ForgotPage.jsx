@@ -44,7 +44,7 @@ const ForgotPage = () => {
               <span className="txt1">
                 Remember 
               </span>
-              <Link to="/login" className="txt2">your password?</Link>
+              <Link to="/login" className="txt2" className="signIn-link">your password?</Link>
             </div>
           </form>
         </div>

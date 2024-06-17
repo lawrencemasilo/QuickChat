@@ -122,13 +122,15 @@ iframe {
 }
 
 .limiter {
+  display: flex;
+  align-items: center;
   width: 100%;
   margin: 0 auto;
 }
 
 .container-login, .chat-page {
   width: 100%;  
-  min-height: 100vh;
+  min-height: 80vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -139,11 +141,6 @@ iframe {
   align-items: center;
   padding: 15px;
   background-color: #f0f0f0;
-  /*background: #9053c7;
-  background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);*/
 }
 
 .wrap-login {
@@ -188,7 +185,6 @@ iframe {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*background-color: #DDE6ED;*/
   background-color: #f3f6fd;
 }
 
@@ -196,13 +192,10 @@ iframe {
   display: flex;
   align-items: center;
   height: 130px;
-  /*background-color: #27374D;*/
-  /*border-bottom: #999797 0.5px solid;*/
 }
 
 
 .chatheader-container {
-  /*background-color: #9DB2BF;*/
   background-color: #f3f6fd;
   width: 95%;
   margin-top: 20px;
@@ -754,8 +747,3 @@ iframe {
 ::-webkit-scrollbar-thumb {
   background: #d1d1d1;
 }
-
-/* Handle on hover 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}*/

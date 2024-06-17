@@ -1,20 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-//import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDfwvLVCB7gUL37yYvb_lF8cSPBw7_YIt8",
-  authDomain: "quickchat-706d3.firebaseapp.com",
-  projectId: "quickchat-706d3",
-  storageBucket: "quickchat-706d3.appspot.com",
-  messagingSenderId: "119582055250",
-  appId: "1:119582055250:web:67a9218dfa4c34529e788b",
-  measurementId: "G-JQGJDTNY4P"
-};
-
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+}
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const db = getFirestore()
-//const analytics = getAnalytics(app);

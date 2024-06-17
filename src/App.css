@@ -116,7 +116,7 @@ iframe {
 
 .txt2 {
   font-family: "Open Sans", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.5;
   color: #666666;
 }
@@ -164,7 +164,7 @@ iframe {
 .chat-container {
   font-family: "Open Sans", sans-serif;
   width: 100%;
-  height: 800px;
+  height: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -179,6 +179,7 @@ iframe {
 .info {
   flex: 1;
   background-color: #f3f6fd;
+  height: 100%;
 }
 .chat {
   flex: 2;
@@ -304,6 +305,12 @@ iframe {
   margin: 15px 0 0 10px;
 }
 
+.contact-limiter-container {
+  height: 500px;
+  overflow: scroll;
+  padding-bottom: 10px;
+}
+
 .contact-container {
   display: flex;
   align-items: center;
@@ -366,7 +373,8 @@ iframe {
 
 .text-bar {
   width: 95%;
-  height: 34.2rem;
+  /*height: 34.2rem;*/
+  height: 470px;
   position: relative;
   margin: 20px 0 0px 0;
   overflow-y: auto;
@@ -377,13 +385,16 @@ iframe {
   justify-content: center;
   align-items: center;
   width: 95%;
-  height: 70px;
+  height: 50px;
   background-color: #f3f6fd;
   border-radius: 25px;
+  padding-top: 8px;
 }
 
 .input-container input{
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
@@ -401,7 +412,7 @@ iframe {
   width: 50px;
   height: 50px;
   background-color: #006bed;
-  border-radius: 50px;
+  border-radius: 70px;
 }
 
 .send-button {
@@ -439,7 +450,7 @@ iframe {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  height: 50px - 100px;
+  height: 40px - 100px;
   background-color: #006bed;
   padding: 10px 20px 10px 20px;
   border-radius: 15px 15px 0 15px;
@@ -746,4 +757,73 @@ iframe {
  
 ::-webkit-scrollbar-thumb {
   background: #d1d1d1;
+}
+
+
+.err {
+  font-size: 15px;
+  margin-left: 3px;
+  color: #ec0101;
+}
+
+.forgot-title {
+  margin: 20px 0 10px 4px;
+}
+
+.forgot-email {
+  color: #0a0a0a;
+}
+
+
+.alt-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.separater1 , .separater2{
+  width: 9rem;
+  height: 0.5px;
+  background-color: #979797;
+}
+
+.or {
+  margin: 0 4px 0 4px
+}
+
+.alt-providers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.google-provider {
+  width: 35px;
+  height: 35px;
+}
+
+.google-provider img {
+  width: 100%;
+  height: 100%;
+}
+
+
+.google-provider img:hover {
+  cursor: pointer;
+}
+
+.p-t-136 {
+  display: flex;
+  align-items: center;
+}
+
+.signIn-link {
+  font-size: 13px;
+  color: #006bed;
+  font-weight: bold;
+}
+
+.signIn-link:hover {
+  color: #00397e;
 }

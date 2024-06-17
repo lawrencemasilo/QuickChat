@@ -64,7 +64,7 @@ function SignUp() {
 
             <div className="text-center">
               <span className="txt1">
-                <Link to="/login">Already have an account?</Link>
+                <Link to="/login" className="signIn-link">Already have an account?</Link>
               </span>
             </div>
           </form>

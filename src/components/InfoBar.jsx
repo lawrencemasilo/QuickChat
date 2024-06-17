@@ -7,7 +7,9 @@ function InfoBar() {
     <div className="info">
       <NavBar />
       <Search />
-      <Contact />
+      <div className="contact-limiter">
+        <Contact />
+      </div>
     </div>
   )
 }

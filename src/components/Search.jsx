@@ -12,11 +12,13 @@ function Search() {
 
 
   const handleChange = (e) => {
+    /* handles any change to the input element */
     setUsername(e.target.value);
     setInputValue(e.target.value);
   };
 
   const handleSearch = async () => {
+    /* Searches for a user in the firebase database using the given username */
     const usersRef = collection(db, "users");
     const q = query(usersRef, where("displayName", "==", username));
     try {
@@ -35,12 +37,17 @@ function Search() {
   };
 
   const handleKey = (e) => {
+    /* handles the enter key */
     if (e.key === "Enter") {
       handleSearch();
     }
   };
 
   const handleSelect = async (selectedUser) => {
+    /*
+    When the searched user is selected a link between the current user and selected user is formed,
+    the selected user's uid and displayName is stored in the database.
+    */
     if (currentUser && selectedUser) {
       const chatId = currentUser.uid > selectedUser.uid ? currentUser.uid + selectedUser.uid : selectedUser.uid + currentUser.uid;
       try {
@@ -113,4 +120,3 @@ function Search() {
 }
 
 export default Search;
-

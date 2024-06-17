@@ -5,7 +5,7 @@ function Message(props) {
  const { currentUser } = useContext(AuthContext);
   return (
     <div className="message-container">
-        <div className="info-container">
+        {currentUser && <div className="info-container">
           <div className="sender-container">
             {props.message.senderId === currentUser.uid &&
               <div className="text-container">
@@ -14,7 +14,9 @@ function Message(props) {
             }
             {props.message.senderId === currentUser.uid &&
               <div className="timestamp2">
-                <p>{props.message.timestamp && props.message.timestamp.toDate().toLocaleTimeString()}</p>
+                <p>{
+                props.message.timestamp && props.message.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }</p>
               </div>
             }
           </div>
@@ -26,14 +28,14 @@ function Message(props) {
             }
             {props.message.senderId != currentUser.uid &&
               <div className="timestamp">
-                <p>{props.message.timestamp && props.message.timestamp.toDate().toLocaleTimeString()}</p>
+                <p>{
+                 props.message.timestamp && props.message.timestamp.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                }</p>
               </div>
             }
           </div>
-        </div>        
-      
-    </div>
-    
+        </div>}        
+    </div>  
   )
 }
 

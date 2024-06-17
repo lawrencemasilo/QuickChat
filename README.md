@@ -26,7 +26,7 @@ QuickChat is a simple lightweight chat web application built with ReactJS, and F
 
 To run the QuickChat app locally, follow these steps:
 
-### Deployed app: https://65e0d415a881b512b1955a46--profound-dragon-0d50b1.netlify.app/ 
+### Deployed app: https://frabjous-bublanina-27d850.netlify.app/
 
 ### Prerequisites
 
